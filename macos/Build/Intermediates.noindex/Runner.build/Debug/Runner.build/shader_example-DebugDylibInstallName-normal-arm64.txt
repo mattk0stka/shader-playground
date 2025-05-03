@@ -1,0 +1,1 @@
+@rpath/shader_example.debug.dylib
