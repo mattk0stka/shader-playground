@@ -14,5 +14,13 @@
   "ColorsFragment": {
     "type": "fragment",
     "file": "shaders/colors.frag"
+  },
+  "TextureVertex": {
+  "type": "vertex",
+  "file": "shaders/flutter_gpu_texture.vert"
+  },
+  "TextureFragment": {
+    "type": "fragment",
+    "file": "shaders/flutter_gpu_texture.frag"
   }
 }

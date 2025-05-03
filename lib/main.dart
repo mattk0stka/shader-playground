@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gpu/gpu.dart' as gpu;
+import 'package:flutter/scheduler.dart';
 
+
+import 'cube.dart';
 import 'shaders.dart';
 import 'colors.dart';
 
@@ -33,20 +36,43 @@ class _HomeState extends State<Home> {
   double green = 1.0;
   double blue = 1.0;
 
+  Ticker? tick;
+  double time = 0;
+  double deltaSeconds = 0;
+  double seedX = -0.512511498387847167;
+  double seedY = 0.521295573094847167;
+  double scale = 1.0;
+  double depthClearValue = 1.0;
+
+  @override
+  void initState() {
+    tick = Ticker(
+          (elapsed) {
+        setState(() {
+          double previousTime = time;
+          time = elapsed.inMilliseconds / 1000.0;
+          deltaSeconds = previousTime > 0 ? time - previousTime : 0;
+        });
+      },
+    );
+    tick!.start();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       //body: Center(child: const Text('some text here'),),
-      /*
       body: CustomPaint(
-        painter: TrianglePainter(),
+        painter: TextureCubePainter(time, seedX, seedY, scale, depthClearValue),
       )
-       */
 
+      /*
       body: CustomPaint(
         painter: ColorsPainter(red, green, blue),
       ),
+       */
     );
   }
 }
