@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gpu/gpu.dart' as gpu;
 
 import 'shaders.dart';
+import 'colors.dart';
 
 import 'dart:typed_data';
 
@@ -27,13 +28,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  double red = 1.0;
+  double green = 1.0;
+  double blue = 1.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       //body: Center(child: const Text('some text here'),),
+      /*
       body: CustomPaint(
         painter: TrianglePainter(),
       )
+       */
+
+      body: CustomPaint(
+        painter: ColorsPainter(red, green, blue),
+      ),
     );
   }
 }
@@ -50,6 +63,7 @@ class TrianglePainter extends CustomPainter{
     if (texture == null) {
       return;
     }
+
 
 
     final renderTarget = gpu.RenderTarget.singleColor(

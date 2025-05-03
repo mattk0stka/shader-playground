@@ -6,5 +6,13 @@
   "SimpleFragment": {
     "type": "fragment",
     "file": "shaders/simple.frag"
+  },
+  "ColorsVertex": {
+    "type": "vertex",
+    "file": "shaders/colors.vert"
+  },
+  "ColorsFragment": {
+    "type": "fragment",
+    "file": "shaders/colors.frag"
   }
 }
