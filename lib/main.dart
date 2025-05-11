@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gpu/gpu.dart' as gpu;
 import 'package:flutter/scheduler.dart';
+import 'package:shader_example/triangle.dart';
 
 
 import 'cube.dart';
@@ -32,17 +33,11 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  double red = 1.0;
-  double green = 1.0;
-  double blue = 1.0;
-
   Ticker? tick;
   double time = 0;
   double deltaSeconds = 0;
   double seedX = -0.512511498387847167;
   double seedY = 0.521295573094847167;
-  double scale = 1.0;
-  double depthClearValue = 1.0;
 
   @override
   void initState() {
@@ -64,9 +59,15 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       //body: Center(child: const Text('some text here'),),
+        /*
       body: CustomPaint(
         painter: TextureCubePainter(time, seedX, seedY, scale, depthClearValue),
       )
+         */
+
+      body:  CustomPaint(
+        painter:  TrianglePainterA(time, seedX, seedY),
+      ),
 
       /*
       body: CustomPaint(
@@ -82,8 +83,8 @@ class TrianglePainter extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
     final gpu.Texture? texture = gpu.gpuContext.createTexture(
-        gpu.StorageMode.devicePrivate, 300, 300,
-        enableRenderTargetUsage: true,);
+        gpu.StorageMode.devicePrivate, 800, 600,);
+        //enableRenderTargetUsage: true,);
         //enableShaderReadUsage: true,);
        // coordinateSystem: gpu.TextureCoordinateSystem.renderToTexture);
     if (texture == null) {
@@ -115,14 +116,17 @@ class TrianglePainter extends CustomPainter{
     final commandBuffer = gpu.gpuContext.createCommandBuffer();
     final renderPass = commandBuffer.createRenderPass(renderTarget);
 
-    final vert = shaderLibrary['SimpleVertex']!;
+    final vert = shaderLibrary['SimpleVertexScale']!;
     final frag = shaderLibrary['SimpleFragment']!;
     final pipeline = gpu.gpuContext.createRenderPipeline(vert, frag);
 
     final vertices = Float32List.fromList([
       -0.5, -0.5, // First vertex
       0.5, -0.5, // Second vertex
-      0.0,  0.5, // Third vertex
+      -0.5,  0.5, // Third vertex
+    //  -0.5, 0.5,
+    //  0.5, 0.5,
+    //  0.5, -0.5,
     ]);
     final verticesDeviceBuffer = gpu.gpuContext
         .createDeviceBufferWithCopy(ByteData.sublistView(vertices))!;
@@ -133,7 +137,7 @@ class TrianglePainter extends CustomPainter{
       offsetInBytes: 0,
       lengthInBytes: verticesDeviceBuffer.sizeInBytes,
     );
-    renderPass.bindVertexBuffer(verticesView, 3);
+    renderPass.bindVertexBuffer(verticesView, 6);
 
     renderPass.draw();
     commandBuffer.submit();
