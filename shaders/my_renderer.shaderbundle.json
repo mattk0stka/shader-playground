@@ -3,6 +3,14 @@
     "type": "vertex",
     "file": "shaders/simple.vert"
   },
+  "SimpleVertexTranslation":{
+    "type": "vertex",
+    "file": "shaders/simple_translation.vert"
+  },
+  "SimpleVertexScale": {
+    "type": "vertex",
+    "file": "shaders/simple_scale.vert"
+  },
   "SimpleFragment": {
     "type": "fragment",
     "file": "shaders/simple.frag"
@@ -22,5 +30,13 @@
   "TextureFragment": {
     "type": "fragment",
     "file": "shaders/flutter_gpu_texture.frag"
+  },
+  "UnlitVertex": {
+    "type": "vertex",
+    "file": "shaders/gpu_unlit.vert"
+  },
+  "UnlitFragment": {
+    "type": "fragment",
+    "file": "shaders/gpu_unlit.frag"
   }
 }
