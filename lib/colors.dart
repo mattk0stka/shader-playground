@@ -36,6 +36,13 @@ class ColorsPainter extends CustomPainter {
 
     // if overwriting the texture's data by uploading it from the host (CPU), then use StorageMode.hostVisible
     final gpu.DeviceBuffer? vertexBuffer = gpu.gpuContext.createDeviceBuffer(gpu.StorageMode.hostVisible, 4 * 6 * 3);
+    int a = Float32List.fromList(<double>[
+      -0.5, -0.5,  1.0*red, 0.0, 0.0, 1.0, //
+      0.5, -0.5,  0.0, 1.0*green, 0.0, 1.0, //
+      0.0,  0.5,  0.0, 0.0, 1.0*blue, 1.0, //
+    ]).buffer.asByteData().lengthInBytes;
+    print('length: $a');
+
 
     vertexBuffer!.overwrite(Float32List.fromList(<double>[
       -0.5, -0.5,  1.0*red, 0.0, 0.0, 1.0, //
@@ -53,7 +60,9 @@ class ColorsPainter extends CustomPainter {
     pass.bindVertexBuffer(
         gpu.BufferView(vertexBuffer,
             offsetInBytes: 0, lengthInBytes: vertexBuffer.sizeInBytes), 3);
+
     pass.draw();
+
 
     commandBuffer.submit();
 

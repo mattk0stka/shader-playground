@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gpu/gpu.dart' as gpu;
 import 'package:flutter/scheduler.dart';
+import 'package:shader_example/src_engine/node.dart';
+import 'package:shader_example/scale_triangle.dart';
+import 'package:shader_example/simple_triangle.dart';
 import 'package:shader_example/triangle.dart';
 
 
@@ -9,6 +12,14 @@ import 'shaders.dart';
 import 'colors.dart';
 
 import 'dart:typed_data';
+
+
+/*
+void main() {
+  Node node = Node(name: 'some_node_name');
+  print(node.name);
+}
+ */
 
 void main() => runApp(ShaderExample());
 
@@ -32,6 +43,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  double red = 1.0;
+  double green = 1.0;
+  double blue = 1.0;
 
   Ticker? tick;
   double time = 0;
@@ -57,7 +71,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       //body: Center(child: const Text('some text here'),),
         /*
       body: CustomPaint(
@@ -65,15 +79,22 @@ class _HomeState extends State<Home> {
       )
          */
 
+      /*
       body:  CustomPaint(
         painter:  TrianglePainterA(time, seedX, seedY),
       ),
+       */
 
       /*
       body: CustomPaint(
         painter: ColorsPainter(red, green, blue),
       ),
        */
+
+
+      body: CustomPaint(
+        painter: WireTriangle(),
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@
 /**
  * A unique identifier for a view within which Flutter content is hosted.
  *
- * Identifiers are guaranteed to be unique for views owned by a given engine but
+ * Identifiers are guaranteed to be unique for views owned by a given src_engine but
  * may collide for views owned by different engines.
  */
 typedef int64_t FlutterViewIdentifier;
@@ -51,21 +51,21 @@ typedef NS_ENUM(NSInteger, FlutterMouseTrackingMode) {
  * Controls a view that displays Flutter content and manages input.
  *
  * A FlutterViewController works with a FlutterEngine. Upon creation, the view
- * controller is always added to an engine, either a given engine, or it implicitly
- * creates an engine and add itself to that engine.
+ * controller is always added to an src_engine, either a given src_engine, or it implicitly
+ * creates an src_engine and add itself to that src_engine.
  *
  * The FlutterEngine assigns each view controller attached to it a unique ID.
  * Each view controller corresponds to a view, and the ID is used by the framework
  * to specify which view to operate.
  *
- * A FlutterViewController can also be unattached to an engine after it is manually
- * unset from the engine, or transiently during the initialization process.
+ * A FlutterViewController can also be unattached to an src_engine after it is manually
+ * unset from the src_engine, or transiently during the initialization process.
  * An unattached view controller is invalid. Whether the view controller is attached
  * can be queried using FlutterViewController#attached.
  *
  * The FlutterViewController strongly references the FlutterEngine, while
- * the engine weakly the view controller. When a FlutterViewController is deallocated,
- * it automatically removes itself from its attached engine. When a FlutterEngine
+ * the src_engine weakly the view controller. When a FlutterViewController is deallocated,
+ * it automatically removes itself from its attached src_engine. When a FlutterEngine
  * has no FlutterViewControllers attached, it might shut down itself or not depending
  * on its configuration.
  */
@@ -73,7 +73,7 @@ FLUTTER_DARWIN_EXPORT
 @interface FlutterViewController : NSViewController <FlutterPluginRegistry>
 
 /**
- * The Flutter engine associated with this view controller.
+ * The Flutter src_engine associated with this view controller.
  */
 @property(nonatomic, nonnull, readonly) FlutterEngine* engine;
 
@@ -86,10 +86,10 @@ FLUTTER_DARWIN_EXPORT
 /**
  * Initializes a controller that will run the given project.
  *
- * In this initializer, this controller creates an engine, and is attached to
- * that engine as the default controller. In this way, this controller can not
+ * In this initializer, this controller creates an src_engine, and is attached to
+ * that src_engine as the default controller. In this way, this controller can not
  * be set to other engines. This initializer is suitable for the first Flutter
- * view controller of the app. To use the controller with an existing engine,
+ * view controller of the app. To use the controller with an existing src_engine,
  * use initWithEngine:nibName:bundle: instead.
  *
  * @param project The project to run in this view controller. If nil, a default `FlutterDartProject`
@@ -105,7 +105,7 @@ FLUTTER_DARWIN_EXPORT
 /**
  * Initializes this FlutterViewController with an existing `FlutterEngine`.
  *
- * The initialized view controller will add itself to the engine as part of this process.
+ * The initialized view controller will add itself to the src_engine as part of this process.
  *
  * This initializer is suitable for both the first Flutter view controller and
  * the following ones of the app.
@@ -130,12 +130,12 @@ FLUTTER_DARWIN_EXPORT
 @property(nonatomic, readonly) FlutterViewIdentifier viewIdentifier;
 
 /**
- * Return YES if the view controller is attached to an engine.
+ * Return YES if the view controller is attached to an src_engine.
  */
 - (BOOL)attached;
 
 /**
- * Invoked by the engine right before the engine is restarted.
+ * Invoked by the src_engine right before the src_engine is restarted.
  *
  * This should reset states to as if the application has just started.  It
  * usually indicates a hot restart (Shift-R in Flutter CLI.)
