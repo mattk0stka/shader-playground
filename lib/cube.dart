@@ -199,6 +199,7 @@ class _TextureCubePageState extends State<TextureCubePage> {
 
   @override
   Widget build(BuildContext context) {
+    print('build methode called');
     return Column(
       children: <Widget>[
         Slider(

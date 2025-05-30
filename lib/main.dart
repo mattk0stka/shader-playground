@@ -52,6 +52,8 @@ class _HomeState extends State<Home> {
   double deltaSeconds = 0;
   double seedX = -0.512511498387847167;
   double seedY = 0.521295573094847167;
+  double scale = 1.0;
+  double depthClearValue = 2.0;
 
   @override
   void initState() {
@@ -71,13 +73,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       //body: Center(child: const Text('some text here'),),
-        /*
+      body: TextureCubePage(),
+      /*
       body: CustomPaint(
         painter: TextureCubePainter(time, seedX, seedY, scale, depthClearValue),
       )
-         */
+       */
 
       /*
       body:  CustomPaint(
@@ -91,10 +94,11 @@ class _HomeState extends State<Home> {
       ),
        */
 
-
+        /*
       body: CustomPaint(
         painter: WireTriangle(),
       ),
+         */
     );
   }
 }
