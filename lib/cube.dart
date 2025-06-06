@@ -64,6 +64,7 @@ class TextureCubePainter extends CustomPainter {
       gpu.ColorAttachment(texture: renderTexture),
       depthStencilAttachment: gpu.DepthStencilAttachment(
           texture: depthTexture, depthClearValue: depthClearValue),
+
     );
 
     /// Add a render pass encoder to the command buffer so that we can start
@@ -137,7 +138,7 @@ class TextureCubePainter extends CustomPainter {
         gpu.StorageMode.hostVisible, 5, 5,
         enableShaderReadUsage: true);
     sampledTexture!.overwrite(uint32(<int>[
-      0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, //
+      0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, //
       0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, //
       0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, //
       0x00000000, 0xFFFFFFFF, 0x00000000, 0xFFFFFFFF, 0x00000000, //
@@ -194,12 +195,16 @@ class _TextureCubePageState extends State<TextureCubePage> {
       },
     );
     tick!.start();
+    if (!gpu.gpuContext.doesSupportOffscreenMSAA) {
+      print('msaa is not currently supported');
+    } else {
+      print('messa supported');
+    }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('build methode called');
     return Column(
       children: <Widget>[
         Slider(
