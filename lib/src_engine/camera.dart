@@ -63,6 +63,7 @@ Matrix4 _matrix4Perspective(
 }
 
 class PerspectiveCamera extends Camera {
+
   PerspectiveCamera({
     this.fovRadiansY = 45 * degrees2Radians,
     Vector3? position,
@@ -75,6 +76,8 @@ class PerspectiveCamera extends Camera {
         up = up ?? Vector3(0, 1, 0);
 
   double fovRadiansY;
+
+
   @override
   Vector3 position = Vector3(0, 0, -5);
   Vector3 target;

@@ -35,7 +35,7 @@
     "type": "vertex",
     "file": "shaders/gpu_unlit.vert"
   },
-  "UnlitFragment": {
+  "UnlitFrag": {
     "type": "fragment",
     "file": "shaders/gpu_unlit.frag"
   },
@@ -46,5 +46,13 @@
   "Barycentric": {
     "type": "fragment",
     "file": "shaders/wireframe.frag"
+  },
+  "UnskinnedVertex": {
+    "type": "vertex",
+    "file": "shaders/unskinned.vert"
+  },
+  "UnlitFragment": {
+    "type": "fragment",
+    "file": "shaders/unlit.frag"
   }
 }

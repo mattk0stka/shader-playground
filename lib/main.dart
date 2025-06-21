@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gpu/gpu.dart' as gpu;
 import 'package:flutter/scheduler.dart';
+import 'package:shader_example/example_cuboid.dart';
 import 'package:shader_example/src_engine/node.dart';
 import 'package:shader_example/scale_triangle.dart';
 import 'package:shader_example/simple_triangle.dart';
+import 'package:shader_example/src_engine/scene_debug.dart';
 import 'package:shader_example/triangle.dart';
 
 
@@ -22,6 +24,12 @@ void main() {
  */
 
 void main() => runApp(ShaderExample());
+
+/*
+void main() {
+  SceneDebug debug = new SceneDebug();
+}
+*/
 
 class ShaderExample extends StatelessWidget {
   const ShaderExample({super.key});
@@ -76,7 +84,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       //body: Center(child: const Text('some text here'),),
+      body: SizedBox.expand(child: ExampleCuboid(),),
+      /*
       body: TextureCubePage(),
+       */
       /*
       body: CustomPaint(
         painter: TextureCubePainter(time, seedX, seedY, scale, depthClearValue),
