@@ -22,7 +22,7 @@
 @class FlutterViewController;
 
 /**
- * Coordinates a single instance of execution of a Flutter engine.
+ * Coordinates a single instance of execution of a Flutter src_engine.
  *
  * A FlutterEngine can only be attached with one controller from the native
  * code.
@@ -32,7 +32,7 @@ FLUTTER_DARWIN_EXPORT
     : NSObject <FlutterTextureRegistry, FlutterPluginRegistry, FlutterAppLifecycleDelegate>
 
 /**
- * Initializes an engine with the given project.
+ * Initializes an src_engine with the given project.
  *
  * @param labelPrefix Currently unused; in the future, may be used for labelling threads
  *                    as with the iOS FlutterEngine.
@@ -42,7 +42,7 @@ FLUTTER_DARWIN_EXPORT
                              project:(nullable FlutterDartProject*)project;
 
 /**
- * Initializes an engine that can run headlessly with the given project.
+ * Initializes an src_engine that can run headlessly with the given project.
  *
  * @param labelPrefix Currently unused; in the future, may be used for labelling threads
  *                    as with the iOS FlutterEngine.
@@ -71,14 +71,14 @@ FLUTTER_DARWIN_EXPORT
 - (BOOL)runWithEntrypoint:(nullable NSString*)entrypoint;
 
 /**
- * The `FlutterViewController` of this engine, if any.
+ * The `FlutterViewController` of this src_engine, if any.
  *
  * This view is used by legacy APIs that assume a single view.
  *
  * Setting this field from nil to a non-nil view controller also updates
- * the view controller's engine and ID.
+ * the view controller's src_engine and ID.
  *
- * Setting this field from non-nil to nil will terminate the engine if
+ * Setting this field from non-nil to nil will terminate the src_engine if
  * allowHeadlessExecution is NO.
  *
  * Setting this field from non-nil to a different non-nil FlutterViewController
@@ -87,14 +87,14 @@ FLUTTER_DARWIN_EXPORT
 @property(nonatomic, nullable, weak) FlutterViewController* viewController;
 
 /**
- * The `FlutterBinaryMessenger` for communicating with this engine.
+ * The `FlutterBinaryMessenger` for communicating with this src_engine.
  */
 @property(nonatomic, nonnull, readonly) id<FlutterBinaryMessenger> binaryMessenger;
 
 /**
- * Shuts the Flutter engine if it is running. The FlutterEngine instance must always be shutdown
+ * Shuts the Flutter src_engine if it is running. The FlutterEngine instance must always be shutdown
  * before it may be collected. Not shutting down the FlutterEngine instance before releasing it will
- * result in the leak of that engine instance.
+ * result in the leak of that src_engine instance.
  */
 - (void)shutDownEngine;
 

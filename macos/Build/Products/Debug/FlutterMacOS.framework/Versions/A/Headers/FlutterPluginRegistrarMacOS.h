@@ -28,7 +28,7 @@ FLUTTER_DARWIN_EXPORT
 @protocol FlutterPluginRegistrar <NSObject>
 
 /**
- * The binary messenger used for creating channels to communicate with the Flutter engine.
+ * The binary messenger used for creating channels to communicate with the Flutter src_engine.
  */
 @property(nonnull, readonly) id<FlutterBinaryMessenger> messenger;
 

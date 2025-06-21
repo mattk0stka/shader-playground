@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gpu/gpu.dart' as gpu;
 import 'package:flutter/scheduler.dart';
+import 'package:shader_example/example_cuboid.dart';
+import 'package:shader_example/src_engine/node.dart';
+import 'package:shader_example/scale_triangle.dart';
+import 'package:shader_example/simple_triangle.dart';
+import 'package:shader_example/src_engine/scene_debug.dart';
 import 'package:shader_example/triangle.dart';
 
 
@@ -10,7 +15,21 @@ import 'colors.dart';
 
 import 'dart:typed_data';
 
+
+/*
+void main() {
+  Node node = Node(name: 'some_node_name');
+  print(node.name);
+}
+ */
+
 void main() => runApp(ShaderExample());
+
+/*
+void main() {
+  SceneDebug debug = new SceneDebug();
+}
+*/
 
 class ShaderExample extends StatelessWidget {
   const ShaderExample({super.key});
@@ -32,15 +51,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  double red = 1.0;
+  double green = 1.0;
+  double blue = 1.0;
 
   Ticker? tick;
   double time = 0;
   double deltaSeconds = 0;
   double seedX = -0.512511498387847167;
   double seedY = 0.521295573094847167;
+  double scale = 1.0;
+  double depthClearValue = 2.0;
 
   @override
   void initState() {
+
     tick = Ticker(
           (elapsed) {
         setState(() {
@@ -59,21 +84,33 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Colors.white,
       //body: Center(child: const Text('some text here'),),
-        /*
+      body: SizedBox.expand(child: ExampleCuboid(),),
+      /*
+      body: TextureCubePage(),
+       */
+      /*
       body: CustomPaint(
         painter: TextureCubePainter(time, seedX, seedY, scale, depthClearValue),
       )
-         */
+       */
 
+      /*
       body:  CustomPaint(
         painter:  TrianglePainterA(time, seedX, seedY),
       ),
+       */
 
       /*
       body: CustomPaint(
         painter: ColorsPainter(red, green, blue),
       ),
        */
+
+        /*
+      body: CustomPaint(
+        painter: WireTriangle(),
+      ),
+         */
     );
   }
 }
