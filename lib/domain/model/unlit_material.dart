@@ -9,7 +9,7 @@ import 'material.dart';
 class UnlitMaterial extends Material {
 
   late gpu.Texture baseColorTexture;
-  vm.Vector4 baseColorFactor = vm.Colors.black;
+  vm.Vector4 baseColorFactor = vm.Colors.green;
   double vertexColorWeight = 1.0;
 
 

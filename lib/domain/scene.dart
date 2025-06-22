@@ -180,6 +180,7 @@ class Scene {
       coordinateSystem: gpu.TextureCoordinateSystem.renderToTexture,
     );
 
+
     final renderTarget = gpu.RenderTarget.singleColor(
       colorAttachment,
       depthStencilAttachment: gpu.DepthStencilAttachment(
